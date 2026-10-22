@@ -914,6 +914,11 @@ function nearAlert(){
     const tm=`${hh<12?"오전":"오후"} ${hh%12||12}:${pad2(now.getMinutes())}`;
     if(!c.msgs.some(m=>m.day==="4월 5일 일요일")) c.msgs.push({day:"4월 5일 일요일"});
     c.msgs.push({from:"you", t:"당신 누구야.", tm}); c.unread++; c.time=tm;
+    const i=KAKAO.indexOf(c); if(i>0){ KAKAO.splice(i,1); KAKAO.unshift(c); }   // 채팅 목록 맨 위로
+    c.replies=[   // 이때부터 도윤에게 답장 가능
+      ["당신 누구냐니까!", "씨발 장난해?", "그 폰 누나 거야. 당장 내놔"],
+      ["어디야", "내가 찾아갈게"],
+    ];
     showBanner({app:"카카오톡", title:"도윤", body:"당신 누구야.", chat:"doyoon"}); refreshBadges();
   };
   bg.querySelector(".alert div").onclick=()=>{ bg.remove(); setTimeout(kakaoDo,1200); };
@@ -1157,7 +1162,8 @@ function render(k, isBack){
       const delay = firstOpen && i===c.msgs.length-1 ? 900 : 0; // 안 읽은 마지막 메시지는 타이핑 연출
       if(delay){
         const ty=bubble({from:m.from,t:""},true); wrap.appendChild(ty);
-        setTimeout(()=>{ ty.remove(); wrap.appendChild(bubble(m)); body.scrollTop=body.scrollHeight; }, delay);
+        let done=false; const flush=()=>{ if(done) return; done=true; clearTimeout(tid); ty.remove(); wrap.appendChild(bubble(m)); body.scrollTop=body.scrollHeight; };
+        const tid=setTimeout(flush, delay); wrap._flush=flush;
       } else wrap.appendChild(bubble(m));
     });
     setTimeout(()=>body.scrollTop=body.scrollHeight,0);
@@ -1165,9 +1171,9 @@ function render(k, isBack){
       wrap.style.paddingBottom="80px";
       c._ri = c._ri||0;
       const box=document.createElement("div"); box.className="cbox";
-      box.innerHTML=`<input id="mIn" placeholder="iMessage"><button id="mGo" disabled style="width:32px;height:32px;border-radius:50%;background:#2f8cff;color:#fff;font-size:17px">↑</button>`;
+      box.innerHTML=`<input id="mIn" placeholder="${isK?"메시지 입력":"iMessage"}"><button id="mGo" disabled style="${isK?"padding:6px 12px;border-radius:8px;background:#fee500;color:#111;font-size:13px":"width:32px;height:32px;border-radius:50%;background:#2f8cff;color:#fff;font-size:17px"}">${isK?"전송":"↑"}</button>`;
       $("app").appendChild(box);
-      const send=()=>{ const t=$("mIn").value.trim(); if(!t) return;
+      const send=()=>{ const t=$("mIn").value.trim(); if(!t) return; if(wrap._flush) wrap._flush();
         const now=new Date(SIM_START.getTime()+(Date.now()-_t0)); const hh=now.getHours(); const tm=`${hh<12?"오전":"오후"} ${hh%12||12}:${pad2(now.getMinutes())}`;
         const m={from:"me",t,tm}; c.msgs.push(m); wrap.appendChild(bubble(m)); $("mIn").value=""; $("mGo").disabled=true;
         body.scrollTop=body.scrollHeight;
