@@ -932,11 +932,8 @@ function getCallAudio(){
 }
 // 첫 터치 때 오디오를 미리 '깨워둠' (아이폰/사파리 자동재생 제한 대응)
 let _primed=false;
-function primeAudio(){
+function primeAudio(){   // 첫 터치 때 효과음(WebAudio)만 깨움 — 통화 음성은 '응답' 누를 때만 재생
   const c=getCtx(); if(c && c.state==="suspended") c.resume();
-  if(_primed || !INCOMING.audio) return; _primed=true;
-  const a=getCallAudio(); a.muted=true;
-  a.play().then(()=>{ a.pause(); a.currentTime=0; a.muted=false; }).catch(()=>{ a.muted=false; _primed=false; });
 }
 document.addEventListener("touchstart", primeAudio, {passive:true});
 document.addEventListener("click", primeAudio);   // "ringing" | "talking" | "dialing"
