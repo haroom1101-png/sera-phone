@@ -281,6 +281,21 @@
   .dm-row .dot{width:9px;height:9px;border-radius:50%;background:#2f8cff}
   .dm-req{padding:6px 18px 10px;font-size:13px;color:#2f8cff;font-weight:600}
 
+  /* 인스타 DM */
+  .ig-dm{padding:10px 14px 140px}
+  .ig-dm-top{display:flex;flex-direction:column;align-items:center;gap:3px;padding:18px 0 22px;text-align:center}
+  .ig-dm-top .a{width:84px;height:84px;border-radius:50%;margin-bottom:8px}
+  .ig-dm-top b{font-size:17px}.ig-dm-top small{font-size:12.5px;color:#737373}
+  .ig-dm-top .btn{margin-top:10px;background:#efefef;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:600}
+  .ig-dm-time{text-align:center;font-size:11.5px;color:#737373;margin:6px 0 12px}
+  .ig-row{display:flex;align-items:flex-end;gap:8px;margin-bottom:3px}
+  .ig-row .sa{width:26px;height:26px;border-radius:50%;flex-shrink:0}
+  .ig-b{background:#efefef;border-radius:22px;padding:9px 14px;font-size:14.5px;line-height:1.4;max-width:72%;word-break:keep-all}
+  .ig-req{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #efefef;padding:14px 16px 30px;font-size:14px;text-align:center;z-index:3}
+  .ig-req small{display:block;color:#737373;font-size:12px;margin-top:4px}
+  .ig-req-btns{display:flex;justify-content:space-around;margin-top:12px;font-weight:600;font-size:15px}
+  .ig-req-btns span{cursor:pointer}
+
   /* 기사 */
   .news-card{margin:10px 14px 24px;border-radius:14px;overflow:hidden;background:#f6f6f8;cursor:pointer}
   .news-card .im{aspect-ratio:16/10}
@@ -734,6 +749,7 @@ const KAKAO_GROUP = { id:"shower", name:"👰 세라 브샤 🤍", group:true, m
     {from:"you", who:"도윤", t:"누나 어디 있어", tm:"오전 7:41"},
     {from:"you", who:"소연", t:"얘들아 경찰 왔어", tm:"오전 8:02"},
     {from:"you", who:"지수", img:"POLICE_IMG", tm:"오전 8:03"},
+    {from:"you", who:"지수", t:"헐 진짜네요", tm:"오전 8:03"},
     {from:"you", who:"도윤", t:"아무것도 말하지 마", tm:"오전 8:05"},
   ]};
 const KAKAO = [KAKAO_GROUP];
@@ -892,7 +908,16 @@ function nearAlert(){
   warnTone(); if(navigator.vibrate) navigator.vibrate([200,100,200]);
   const bg=document.createElement("div"); bg.className="alert-bg";
   bg.innerHTML=`<div class="alert"><b>⚠️ 정도윤님이 접근 중입니다</b><p>위치를 공유 중인 정도윤님이<br>100m 이내에서 당신 쪽으로 다가오고 있습니다.</p><div style="font-weight:600">확인</div></div>`;
-  bg.querySelector(".alert div").onclick=()=>bg.remove();
+  let sent=false;
+  const kakaoDo=()=>{ if(sent || window._doKakao) return; sent=window._doKakao=true;
+    const c=KAKAO.find(x=>x.id==="doyoon"); const now=new Date(SIM_START.getTime()+(Date.now()-_t0)); const hh=now.getHours();
+    const tm=`${hh<12?"오전":"오후"} ${hh%12||12}:${pad2(now.getMinutes())}`;
+    if(!c.msgs.some(m=>m.day==="4월 5일 일요일")) c.msgs.push({day:"4월 5일 일요일"});
+    c.msgs.push({from:"you", t:"당신 누구야.", tm}); c.unread++; c.time=tm;
+    showBanner({app:"카카오톡", title:"도윤", body:"당신 누구야.", chat:"doyoon"}); refreshBadges();
+  };
+  bg.querySelector(".alert div").onclick=()=>{ bg.remove(); setTimeout(kakaoDo,1200); };
+  setTimeout(kakaoDo,6000);
   $("screen").appendChild(bg);
 }
 function lowBattery(){
@@ -916,13 +941,15 @@ function showBanner(b){
   ding();
   const el=document.createElement("div"); el.className="banner";
   const isMsg=b.app==="메시지";
-  el.innerHTML= isMsg ? `<div class="bi" style="background:linear-gradient(160deg,#8fd9a8,#34c27a)">${APPS.find(a=>a.k==="msg").ico.replace('width="34" height="34"','width="22" height="22"')}</div>
+  const isKakao=b.app==="카카오톡";
+  el.innerHTML= isKakao ? `<div class="bi" style="background:${APPS.find(a=>a.k==="kakao").bg}"></div>
+    <div class="bt"><small>지금</small><b>${b.app}</b><br><b>${b.title}</b><br>${b.body}</div>` : isMsg ? `<div class="bi" style="background:linear-gradient(160deg,#8fd9a8,#34c27a)">${APPS.find(a=>a.k==="msg").ico.replace('width="34" height="34"','width="22" height="22"')}</div>
     <div class="bt"><small>지금</small><b>${b.app}</b><br><b>${b.title}</b><br>${b.body}</div>` : `<div class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10 12 4l9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg></div>
     <div class="bt"><small>지금</small><b>${b.app}</b><br><b>${b.title}</b><br>${b.body}</div>`;
   $("screen").appendChild(el);
   requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add("in")));
   const close=()=>{ el.classList.remove("in"); setTimeout(()=>el.remove(),500); };
-  el.onclick=()=>{ close(); if(b.open){ window._bankTab='auto'; closeCamera(); stack=[]; current=null; render(b.open); $("app").classList.add("open"); $("status").classList.add("dark"); $("homebar").classList.remove("light"); } else if(b.chat){ openApp('msg'); render('chat:'+b.chat); } }; setTimeout(close, 4500);
+  el.onclick=()=>{ close(); if(b.open){ window._bankTab='auto'; closeCamera(); stack=[]; current=null; render(b.open); $("app").classList.add("open"); $("status").classList.add("dark"); $("homebar").classList.remove("light"); } else if(b.chat){ closeCamera(); const isK=KAKAO.some(c=>c.id===b.chat); openApp(isK?'kakao':'msg'); render('chat:'+b.chat); } }; setTimeout(close, 4500);
   if(navigator.vibrate) navigator.vibrate(120);
 }
 let actx=null, ringLoop=null;
@@ -1058,7 +1085,7 @@ function closeCamera(){
 let stack = [];
 function openApp(k){ stack=[]; render(k); $("app").classList.add("open"); $("status").classList.add("dark"); $("homebar").classList.remove("light"); }
 function goHome(){
-  closeCamera();
+  closeCamera(); clearInterval(window._walk); clearTimeout(window._approach);
   document.querySelectorAll(".cbox").forEach(e=>e.remove());
   if($("app").classList.contains("open")){ $("app").classList.remove("open"); show("home"); refreshBadges(); }
 }
@@ -1255,6 +1282,12 @@ function render(k, isBack){
     <div class="msec">최근 길안내</div>
     ${M.recent.map(r=>`<div class="mrow"><span class="mi">↗</span><div>${r.to}<small>${r.from}에서 · ${r.dur}</small></div><span class="rt">${r.when.replace(" 오","<br>오")}</span></div>`).join("")}`;
     let x=262,y=122, mx=170, my=118; clearInterval(window._walk); clearTimeout(window._approach);
+    if(window._doState){   // 이미 접근 이벤트를 봤으면 마지막 위치 그대로
+      const S=window._doState, el=$("doPin"), me=$("mePin");
+      el.style.transition="none"; el.style.left=S.x+"px"; el.style.top=S.y+"px";
+      me.style.transition="none"; me.style.left=S.mx+"px"; me.style.top=S.my+"px";
+      $("shareWhere").textContent=S.txt||"100m 이내 · 접근 중";
+    } else {
     // 2초 뒤 도윤이 내 쪽으로 빠르게 접근 → 경고
     window._approach=setTimeout(()=>{
       const el=$("doPin"); if(!el) return;
@@ -1262,10 +1295,26 @@ function render(k, isBack){
       el.style.transition="left 1.6s cubic-bezier(.5,0,.3,1),top 1.6s cubic-bezier(.5,0,.3,1)";
       const me=$("mePin"); const tx=(me?parseFloat(me.style.left):170)+48, ty=(me?parseFloat(me.style.top):118)+8;
       el.style.left=tx+"px"; el.style.top=ty+"px";
+      window._doState={x:tx,y:ty,mx:me?parseFloat(me.style.left):170,my:me?parseFloat(me.style.top):118,txt:"100m 이내 · 접근 중"};
       $("shareWhere") && ($("shareWhere").textContent="100m 이내 · 접근 중");
       setTimeout(()=>{ if(current==="maps") nearAlert(); }, 1700);
+      // 경고 이후에도 계속 조금씩 더 다가옴 (거리 표시도 줄어듦)
+      let dist=100, cx=tx, cy=ty;
+      setTimeout(()=>{
+        window._walk=setInterval(()=>{
+          const p=$("doPin"), m=$("mePin"); if(!p || current!=="maps" || !$("app").classList.contains("open")){ clearInterval(window._walk); return; }
+          const mx=parseFloat(m.style.left)+6, my=parseFloat(m.style.top)+4;
+          cx += (mx-cx)*0.18 + (Math.random()*4-2); cy += (my-cy)*0.18 + (Math.random()*3-1.5);
+          p.style.transition="left 1.8s linear,top 1.8s linear"; p.style.left=cx+"px"; p.style.top=cy+"px";
+          if(m){ m.style.left=(parseFloat(m.style.left)+(Math.random()*4-2))+"px"; }
+          dist=Math.max(8, Math.round(dist*0.78));
+          const w=$("shareWhere"); if(w) w.textContent = dist>10 ? `${dist}m · 접근 중` : "바로 옆 · 방금";
+          window._doState={x:cx,y:cy,mx:parseFloat(m.style.left),my:parseFloat(m.style.top),txt:w?w.textContent:""};
+        },1800);
+      }, 1800);
     }, 2000);
-    window._walk=setInterval(()=>{ const el=$("doPin"); if(!el){ clearInterval(window._walk); return; }
+    }
+    if(!window._doState) window._walk=setInterval(()=>{ const el=$("doPin"); if(!el || current!=="maps" || window._doState){ clearInterval(window._walk); return; }
       x=Math.max(235,Math.min(300,x+(Math.random()*16-8))); y=Math.max(112,Math.min(128,y+(Math.random()*6-3)));
       el.style.left=x+"px"; el.style.top=y+"px";
       const me=$("mePin"); if(me){ mx=Math.max(150,Math.min(195,mx+(Math.random()*6-3))); my=Math.max(110,Math.min(124,my+(Math.random()*4-2))); me.style.left=mx+"px"; me.style.top=my+"px"; }
@@ -1328,9 +1377,18 @@ function render(k, isBack){
   }
   else if(k.startsWith("dmt:")){
     const d=DMS[+k.slice(4)]; d.unread=false; title.textContent=d.from;
-    const wrap=document.createElement("div"); wrap.className="chat";
-    d.msgs.forEach(t=>wrap.appendChild(bubble({from:"you",t})));
-    body.appendChild(wrap);
+    const fans={"minji_0412":"1.2천","hani.bride":"842","gossip_daily_kr":"3.1만","borrowed.life":"0","user_29381":"3"};
+    body.style.background="#fff";
+    let h=`<div class="ig-dm"><div class="ig-dm-top"><span class="a" style="background:${d.av}"></span><b>${d.from}</b>
+      <small>Instagram · 팔로워 ${fans[d.from]||"12"}명 · 게시물 ${d.from==="borrowed.life"?"0":"28"}개</small>
+      <small>회원님이 팔로우하지 않는 계정입니다</small><span class="btn">프로필 보기</span></div>
+      <div class="ig-dm-time">${d.time}</div>`;
+    d.msgs.forEach((t,i)=>{ const last=i===d.msgs.length-1;
+      h+=`<div class="ig-row">${last?`<span class="sa" style="background:${d.av}"></span>`:`<span class="sa"></span>`}<div class="ig-b"></div></div>`; });
+    h+=`</div><div class="ig-req"><div>${d.from}님의 메시지 요청을 수락하시겠어요?<small>수락하기 전까지는 회원님이 메시지를 읽었는지 상대방이 알 수 없습니다.</small></div><div class="ig-req-btns"><span style="color:#ed4956">차단</span><span style="color:#ed4956">삭제</span><span>수락</span></div></div>`;
+    body.innerHTML=h;
+    body.querySelectorAll(".ig-b").forEach((b,i)=>b.textContent=d.msgs[i]);
+    body.querySelectorAll(".ig-req-btns span").forEach(b=>b.onclick=()=>goBack());
   }
   else if(k==="news"){
     const N=WEB.news; title.textContent=N.press;
