@@ -294,6 +294,14 @@
   .art .im{aspect-ratio:4/5;border-radius:4px;margin:6px 0 4px}
   .art .cap{font-size:12px;color:var(--sub);margin-bottom:24px}
 
+  /* 별장 사이트 */
+  .vl-hero{height:170px;margin:0 14px;border-radius:14px;background:linear-gradient(160deg,#1e3a5f,#4a7fa8 60%,#9cc3dc);display:flex;align-items:flex-end;padding:16px;color:#fff}
+  .vl-tt{font-size:12px;letter-spacing:3px;font-weight:700}.vl-tt span{display:block;font-size:20px;letter-spacing:0;margin-top:4px}
+  .vl-sec{padding:18px 18px 6px;font-size:15px;font-weight:700}
+  .vl-n{display:flex;justify-content:space-between;align-items:center;padding:11px 18px;border-bottom:1px solid #f2f2f2;font-size:14px;cursor:pointer}
+  .vl-n small{color:#8a8794;font-size:12px}.vl-n.hot b{color:#dc2626}
+  .vl-room{padding:9px 18px;font-size:14px;color:#333}.vl-room b{display:inline-block;width:38px}
+
   /* 인터넷 */
   .web-bar{margin:8px 14px 14px;background:#efeff1;border-radius:12px;padding:10px 14px;font-size:15px;color:#8a8794;display:flex;gap:8px;align-items:center}
   .web-sec{padding:4px 18px 8px;font-size:20px;font-weight:700}
@@ -459,7 +467,7 @@ const CHATS = [
     ]},
   { id:"taejun", name:"최태준", color:"#4b5563", emoji:"태",
     replies:[   // 답장하면 순서대로 오는 답 — 세라가 죽은 걸 아는 태준이, 폰을 주운 사람을 경계함
-      ["…누구야", "그 폰 왜 네가 갖고 있어"],
+      ["야 정세라", "아", "아니", "너 누구야", "그 폰 왜 네가 갖고 있어"],
       ["경찰이야?", "아니면 그냥 주운 거면\n그거 아무한테도 넘기지 마", "돈은 원하는 만큼 줄게"],
       ["대답해"],
     ],
@@ -872,6 +880,21 @@ function scheduleCall(){
   setTimeout(()=>{ if(callState) { const w=setInterval(()=>{ if(!callState){ clearInterval(w); setTimeout(lowBattery,2000); } },1000); } else lowBattery(); }, 45000);
 
 }
+function warnTone(){
+  const c=getCtx(); if(!c) return; if(c.state==="suspended") c.resume();
+  const t=c.currentTime+0.01;
+  [0,0.28].forEach(dt=>{ [[880,0],[660,0.12]].forEach(([f,d2])=>{
+    const o=c.createOscillator(), g=c.createGain(); o.type="square"; o.frequency.value=f; o.connect(g).connect(c.destination);
+    const st=t+dt+d2; g.gain.setValueAtTime(0.0001,st); g.gain.exponentialRampToValueAtTime(0.12,st+0.01); g.gain.exponentialRampToValueAtTime(0.0001,st+0.12);
+    o.start(st); o.stop(st+0.13); }); });
+}
+function nearAlert(){
+  warnTone(); if(navigator.vibrate) navigator.vibrate([200,100,200]);
+  const bg=document.createElement("div"); bg.className="alert-bg";
+  bg.innerHTML=`<div class="alert"><b>⚠️ 정도윤님이 접근 중입니다</b><p>위치를 공유 중인 정도윤님이<br>100m 이내에서 당신 쪽으로 다가오고 있습니다.</p><div style="font-weight:600">확인</div></div>`;
+  bg.querySelector(".alert div").onclick=()=>bg.remove();
+  $("screen").appendChild(bg);
+}
 function lowBattery(){
   ding();
   const bg=document.createElement("div"); bg.className="alert-bg";
@@ -916,15 +939,15 @@ function ringPhrase(){
     o.start(t); o2.start(t); o.stop(t+0.45); o2.stop(t+0.45);
   });
 }
-function startRing(){ const c=getCtx(); if(c && c.state==="suspended") c.resume(); ringPhrase(); ringLoop=setInterval(ringPhrase,2000);
+function startRing(){ const c=getCtx(); if(c && c.state==="suspended") c.resume(); const vib=()=>{ if(navigator.vibrate) navigator.vibrate([700,300,700]); }; ringPhrase(); vib(); ringLoop=setInterval(()=>{ ringPhrase(); vib(); },2000);
   ringMiss=setTimeout(()=>{ if(callState==="ringing") finishCall({s:"부재중 · 휴대전화", miss:true}); },25000); }
-function stopRing(){ clearInterval(ringLoop); clearTimeout(ringMiss); ringLoop=null; }
+function stopRing(){ if(navigator.vibrate) navigator.vibrate(0); clearInterval(ringLoop); clearTimeout(ringMiss); ringLoop=null; }
 
 function ringCall(){
   $("inWho").textContent=INCOMING.name; $("inWhat").textContent=INCOMING.sub; $("noLbl").textContent="거절";
   callState="ringing"; $("incoming").className="ringing"; startRing();
-  if(navigator.vibrate) navigator.vibrate([400,200,400]);
 }
+let startTimer=null, endTimer=null;
 let callState=null, callSec=0, callAudio=null, _snd=null, bannersShown=false, ringMiss=null;
 function getCallAudio(){
   if(!_snd){ _snd=document.createElement("audio"); _snd.src=INCOMING.audio; _snd.preload="auto"; _snd.setAttribute("playsinline",""); document.body.appendChild(_snd); }
@@ -932,8 +955,16 @@ function getCallAudio(){
 }
 // 첫 터치 때 오디오를 미리 '깨워둠' (아이폰/사파리 자동재생 제한 대응)
 let _primed=false;
+let _voiceBuf=null;
+function getVoiceBuf(){
+  if(_voiceBuf) return _voiceBuf;
+  const c=getCtx(); if(!c || !INCOMING.audio) return Promise.resolve(null);
+  _voiceBuf = fetch(INCOMING.audio).then(r=>r.arrayBuffer()).then(ab=>new Promise((res,rej)=>c.decodeAudioData(ab,res,rej)));
+  return _voiceBuf;
+}
 function primeAudio(){   // 첫 터치 때 효과음(WebAudio)만 깨움 — 통화 음성은 '응답' 누를 때만 재생
   const c=getCtx(); if(c && c.state==="suspended") c.resume();
+  getVoiceBuf();
 }
 document.addEventListener("touchstart", primeAudio, {passive:true});
 document.addEventListener("click", primeAudio);   // "ringing" | "talking" | "dialing"
@@ -942,12 +973,16 @@ function answerCall(){
   callSec=0; $("inWhat").textContent="00:00";
   let limit=6;
   if(INCOMING.audio){
-    callAudio=getCallAudio(); callAudio.muted=false; callAudio.currentTime=0;
-    limit=Infinity; callAudio.onended=()=>finishCall({s:`수신 · 0:${pad2(callSec)}`});
-    callAudio.play().catch(()=>{            // 막히면 화면 한 번 더 탭할 때 재생
-      $("incoming").addEventListener("click", ()=>callAudio && callAudio.play().catch(()=>{}), {once:true});
-      limit=6;
-    });
+    // WebAudio로 재생 → 응답 2초 뒤 음성 시작, 끝나고 3초 뒤 종료 (미리 새는 소리 없음)
+    limit=Infinity;
+    const c=getCtx(); if(c && c.state==="suspended") c.resume();
+    try{ if(navigator.audioSession) navigator.audioSession.type="playback"; }catch(e){}
+    getVoiceBuf().then(buf=>{
+      if(callState!=="talking" || !buf){ limit=callSec+6; return; }
+      const src=c.createBufferSource(); src.buffer=buf; src.connect(c.destination);
+      src.start(c.currentTime+2); callAudio={pause:()=>{ try{src.stop();}catch(e){} }, onended:null};
+      src.onended=()=>{ endTimer=setTimeout(()=>{ if(callState==="talking") finishCall({s:`수신 · 0:${pad2(callSec)}`}); }, 3000); };
+    }).catch(()=>{ limit=callSec+6; });
   }
   talkTimer=setInterval(()=>{ callSec++; const m=Math.floor(callSec/60); $("inWhat").textContent=`${pad2(m)}:${pad2(callSec%60)}`; if(callSec>=limit) finishCall({s:`수신 · 0:${pad2(callSec)}`}); },1000);
 }
@@ -957,7 +992,7 @@ function hangUp(){
   else finishCall({s:`수신 · 0:${pad2(callSec)}`});
 }
 function finishCall(log){
-  clearInterval(talkTimer); clearTimeout(dialTimer); if(callAudio){ callAudio.onended=null; callAudio.pause(); callAudio=null; } $("inWhat").textContent="통화 종료";
+  clearInterval(talkTimer); clearTimeout(dialTimer); clearTimeout(startTimer); clearTimeout(endTimer); if(callAudio){ callAudio.onended=null; callAudio.pause(); callAudio=null; } $("inWhat").textContent="통화 종료";
   const wasIncoming = callState!=="dialing";
   CALLS.unshift({n:$("inWho").textContent, t:"방금", ...log}); callState=null; stopRing();
   if(wasIncoming && !bannersShown){ bannersShown=true;
@@ -1214,12 +1249,22 @@ function render(k, isBack){
       <span class="me" id="mePin" style="left:170px;top:118px;transition:left 3s linear,top 3s linear"></span>
       <div class="pin" id="doPin" style="left:262px;top:122px;transition:left 2.5s linear,top 2.5s linear"><span class="pa">도</span><small>도윤</small></div>
     </div>
-    <div class="share-bn"><span class="pa">도</span><div><b>${M.share.who}</b>와(과) 위치 공유 중<small>${M.share.where} · ${M.share.when}</small></div><span class="live">● 실시간</span></div>
+    <div class="share-bn"><span class="pa">도</span><div><b>${M.share.who}</b>와(과) 위치 공유 중<small id="shareWhere">${M.share.where} · ${M.share.when}</small></div><span class="live">● 실시간</span></div>
     <div class="msec">즐겨찾기</div>
     ${M.favorites.map(f=>`<div class="mrow"><span class="mi">${f.ico}</span><div>${f.n}<small>${f.sub}</small></div><span class="rt">${f.last}</span></div>`).join("")}
     <div class="msec">최근 길안내</div>
     ${M.recent.map(r=>`<div class="mrow"><span class="mi">↗</span><div>${r.to}<small>${r.from}에서 · ${r.dur}</small></div><span class="rt">${r.when.replace(" 오","<br>오")}</span></div>`).join("")}`;
-    let x=262,y=122, mx=170, my=118; clearInterval(window._walk);
+    let x=262,y=122, mx=170, my=118; clearInterval(window._walk); clearTimeout(window._approach);
+    // 2초 뒤 도윤이 내 쪽으로 빠르게 접근 → 경고
+    window._approach=setTimeout(()=>{
+      const el=$("doPin"); if(!el) return;
+      clearInterval(window._walk);
+      el.style.transition="left 1.6s cubic-bezier(.5,0,.3,1),top 1.6s cubic-bezier(.5,0,.3,1)";
+      const me=$("mePin"); const tx=(me?parseFloat(me.style.left):170)+48, ty=(me?parseFloat(me.style.top):118)+8;
+      el.style.left=tx+"px"; el.style.top=ty+"px";
+      $("shareWhere") && ($("shareWhere").textContent="100m 이내 · 접근 중");
+      setTimeout(()=>{ if(current==="maps") nearAlert(); }, 1700);
+    }, 2000);
     window._walk=setInterval(()=>{ const el=$("doPin"); if(!el){ clearInterval(window._walk); return; }
       x=Math.max(235,Math.min(300,x+(Math.random()*16-8))); y=Math.max(112,Math.min(128,y+(Math.random()*6-3)));
       el.style.left=x+"px"; el.style.top=y+"px";
@@ -1339,11 +1384,32 @@ function render(k, isBack){
     $("cGo").onclick=post; $("cIn").onkeydown=e=>{ if(e.key==="Enter") post(); };
     $("shareBtn").onclick=()=>openShare();
   }
+  else if(k==="villa"){
+    title.textContent="청평 별장 관리";
+    body.innerHTML=`<div class="web-bar">🔒 cheongpyeong-villa.kr</div>
+      <div class="vl-hero"><div class="vl-tt">LAKESIDE VILLA<br><span>청평호 프라이빗 별장</span></div></div>
+      <div class="vl-sec">공지사항</div>
+      <div class="vl-n hot"><b>[긴급] 화재경보기 고장 안내</b><small>2026.04.03</small></div>
+      <div class="vl-n"><b>호숫가 산책로 야간 조명 공사 안내</b><small>2026.03.30</small></div>
+      <div class="vl-n"><b>4월 정기 방역 일정 안내</b><small>2026.03.25</small></div>
+      <div class="vl-sec">객실 안내</div>
+      <div class="vl-room"><b>1층</b> 라운지 · 다이닝 · 테라스</div>
+      <div class="vl-room"><b>2층</b> 마스터룸 · 게스트룸 3실 (끝방 호수 전망)</div>
+      <div class="vl-room"><b>별관</b> 보트하우스 · 선착장</div>
+      <div style="padding:20px 18px 40px;font-size:12px;color:#8a8794">관리사무소 031-000-0000 · 24시간 운영</div>`;
+    const pop=()=>{
+      const bg=document.createElement("div"); bg.className="alert-bg";
+      bg.innerHTML=`<div class="alert"><b>🔥 화재경보기 고장 안내</b><p>4월 3일(금)부터 별장 <b style="display:inline;padding:0;font-size:13px">2층 화재감지기</b>가<br>오작동으로 작동이 중지된 상태입니다.<br>수리 전까지 화기 사용에 각별히 유의해 주세요.<br><span style="color:#8a8794">수리 예정일 · 4월 6일(월)</span></p><div style="font-weight:600">확인</div></div>`;
+      bg.querySelector(".alert div").onclick=()=>bg.remove(); $("screen").appendChild(bg); ding();
+    };
+    setTimeout(()=>{ if(current==="villa") pop(); }, 700);
+    body.querySelector(".vl-n.hot").onclick=pop;
+  }
   else if(k==="web"){
     title.textContent="인터넷";
     body.innerHTML=`<div class="web-bar">⌕ 검색 또는 웹사이트 이름 입력</div>
       <div class="web-sec">즐겨찾기</div>
-      <div class="favs">${WEB.favorites.map(f=>`<div><div class="fi">${f[0]}</div>${f}</div>`).join("")}</div>
+      <div class="favs">${WEB.favorites.map((f,i)=>`<div class="fav" data-i="${i}" style="cursor:pointer"><div class="fi">${f[0]}</div>${f}</div>`).join("")}</div>
       <div class="web-sec">최근 검색</div>
       ${WEB.recent.map((q,i)=>`<div class="rq" data-i="${i}">${q}</div>`).join("")}
       <div class="web-sec" style="margin-top:18px">많이 본 뉴스</div>
@@ -1351,9 +1417,10 @@ function render(k, isBack){
         <div class="tx">${WEB.news.title}<small>${WEB.news.press} · ${WEB.news.time.slice(0,10)}</small></div></div>`;
     body.querySelectorAll(".rq").forEach(el=>el.onclick=()=>render("q:"+el.dataset.i));
     $("newsCard").onclick=()=>render("news");
+    body.querySelectorAll(".fav").forEach(el=>el.onclick=()=>{ const f=WEB.favorites[+el.dataset.i]; if(f==="청평 별장 관리") render("villa"); else render("q:fav:"+f); });
   }
   else if(k.startsWith("q:")){
-    const q=WEB.recent[+k.slice(2)]; title.textContent=q;
+    const q=k.startsWith("q:fav:") ? k.slice(6) : WEB.recent[+k.slice(2)]; title.textContent=q;
     body.innerHTML=`<div class="web-bar">⌕ ${q}</div><div class="web-err"><b>페이지를 열 수 없음</b>네트워크 연결이 끊어졌습니다.</div>`;
   }
   else{
