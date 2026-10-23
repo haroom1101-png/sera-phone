@@ -162,6 +162,13 @@
   #cam .close{position:absolute;top:56px;left:18px;font-size:15px;cursor:pointer;z-index:2}
   #cam .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .25s}
 
+  .chat.kk .lk{background:#fff;color:#111}.chat.kk .lk-t small{color:#999}.chat.kk .lk-t span{color:#777}
+  .lk.go .lk-im{background:linear-gradient(150deg,#0b3d7a,#1f6fd1)}.lk.go .lk-im::after{content:"HANKUK UNIV.";background:transparent;font-size:11px;letter-spacing:2px}
+  .lk{width:230px;border-radius:14px;overflow:hidden;background:#23232b;color:#eee}
+  .lk-im{height:90px;background:linear-gradient(160deg,#3b4a5a,#1b232c 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 9px);position:relative}
+  .lk-im::after{content:"BREAKING";position:absolute;left:8px;bottom:6px;background:#d0021b;color:#fff;font-size:9px;font-weight:800;padding:2px 6px;letter-spacing:1px}
+  .lk-t{padding:8px 10px 10px}.lk-t small{color:#8b8b98;font-size:10.5px}.lk-t b{display:block;font-size:13px;line-height:1.35;margin:2px 0}.lk-t span{font-size:11.5px;color:#a0a0ad;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
   /* 음성 메시지 */
   .vmsg{display:flex;align-items:center;gap:9px;cursor:pointer;min-width:170px}
   .vplay{width:26px;height:26px;border-radius:50%;background:#111;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -341,7 +348,7 @@
 
   .ig-av div.ph{background-size:cover;background-position:center 20%;font-size:0}
   .dm-row{display:flex;gap:12px;align-items:center;padding:10px 18px;cursor:pointer}
-  .dm-row .a{width:52px;height:52px;border-radius:50%;flex-shrink:0}
+  .dm-row .a{width:52px;height:52px;border-radius:50%;flex-shrink:0;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
   .dm-row .m{flex:1;min-width:0;font-size:14px}.dm-row .m div:last-child{color:var(--sub);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .dm-row.unread .m{font-weight:700}.dm-row.unread .m div:last-child{color:#111}
   .dm-row .dot{width:9px;height:9px;border-radius:50%;background:#2f8cff}
@@ -432,6 +439,29 @@
   .wd2-steps .done{color:#7a5a32}.wd2-steps .done i{background:#7a5a32;color:#fff;border-color:#7a5a32}
   .wd2-steps .now{color:#111;font-weight:700}.wd2-steps .now i{border-color:#7a5a32;color:#7a5a32}
   .wd2-btns{display:flex;gap:6px;margin:14px 16px 0}.wd2-btns span{flex:1;text-align:center;padding:11px;border:1px solid #ccc;font-size:13px;cursor:pointer}.wd2-btns .c{color:#b4532a;border-color:#e3c6b6}
+
+  .un-top{display:flex;justify-content:space-between;background:#0b3d7a;color:#cfe0f5;font-size:11px;padding:6px 16px}
+  .un-hero{background:linear-gradient(150deg,#0b3d7a,#1f6fd1);color:#fff;padding:26px 18px}
+  .un-hero small{font-size:10.5px;letter-spacing:2px;opacity:.8}.un-hero b{display:block;font-size:21px;margin:6px 0 4px}.un-hero span{font-size:12px;opacity:.8}
+  .un-tabs{display:flex;border-bottom:1px solid #ddd;font-size:13px}.un-tabs span{flex:1;text-align:center;padding:11px 0;color:#666}.un-tabs span.on{color:#0b3d7a;font-weight:700;box-shadow:inset 0 -2px 0 #0b3d7a}
+  .un-h{display:flex;justify-content:space-between;align-items:baseline;padding:18px 16px 8px;font-size:18px;font-weight:700}.un-h small{font-size:12px;color:#888;font-weight:400}
+  .un-tb{width:calc(100% - 32px);margin:0 16px;border-collapse:collapse;font-size:12.5px;border-top:2px solid #0b3d7a}
+  .un-tb th{background:#f4f6f9;font-weight:600;padding:8px 4px;border-bottom:1px solid #ddd;color:#555}
+  .un-tb td{padding:10px 4px;border-bottom:1px solid #eee;vertical-align:top;color:#999}
+  .un-tb td:first-child{width:38px;text-align:center}.un-tb td:last-child{width:44px;text-align:center;white-space:nowrap}
+  .un-tb td:nth-child(2){color:#aaa;line-height:1.45}.un-tb tr.go td:nth-child(2){color:#111;font-weight:600}
+  .un-tb em{font-style:normal;background:#0b3d7a;color:#fff;font-size:10px;padding:1px 5px;border-radius:2px}
+  .un-tb .nw{font-style:normal;color:#e02424;font-size:10px;font-weight:700}
+  .un-pg{display:flex;justify-content:center;gap:12px;padding:16px 0;font-size:13px;color:#999}.un-pg .on{color:#0b3d7a;font-weight:700}
+  .un-view{padding:0 16px}
+  .un-vt{font-size:17px;font-weight:700;line-height:1.45;padding:18px 0 10px;border-bottom:1px solid #eee}
+  .un-vt em{font-style:normal;background:#0b3d7a;color:#fff;font-size:11px;padding:2px 6px;border-radius:2px;vertical-align:2px}
+  .un-vm{display:flex;gap:12px;font-size:11.5px;color:#999;padding:8px 0;border-bottom:1px solid #eee}
+  .un-vb{font-size:13.5px;line-height:1.75;color:#333;padding:14px 0}.un-vb p{margin-bottom:10px}.un-vb b{color:#111}
+  .un-vb ol{padding-left:18px;margin-bottom:10px}.un-vb li{margin-bottom:4px}
+  .un-att{background:#f6f7f9;border:1px solid #e5e7eb;padding:9px 10px;font-size:12.5px;margin-top:6px}
+  .un-nav{border-top:1px solid #ddd;font-size:12.5px}.un-nav div{padding:10px 0;border-bottom:1px solid #eee;color:#555}.un-nav span{display:inline-block;width:52px;color:#999}
+  .un-list{margin:16px auto 30px;width:90px;text-align:center;border:1px solid #0b3d7a;color:#0b3d7a;padding:9px;font-size:13px;cursor:pointer}
 
   /* 즐겨찾기 사이트들 */
   .os{font-family:"Noto Sans KR",sans-serif}
@@ -551,6 +581,85 @@
   .batt.lpm::after{background:#ffcc00!important}
   #screen.glitch{animation:gl .18s infinite steps(2)}
   @keyframes gl{0%{transform:translate(0,0);filter:none}25%{transform:translate(-2px,1px);filter:hue-rotate(20deg) contrast(1.3)}50%{transform:translate(2px,-1px)}75%{transform:translate(-1px,0);filter:saturate(2)}100%{transform:translate(0,0)}}
+
+  /* 제어 센터 */
+  .cc-hot{position:absolute;top:0;right:0;width:46%;height:46px;z-index:96;cursor:pointer}
+  .status .sb-air{display:none}.status.air .sb-air{display:block}.status.air svg:not(.sb-air){display:none}
+  .cc{position:absolute;inset:0;z-index:97;background:rgba(0,0,0,0);backdrop-filter:blur(0);transition:all .25s;padding:60px 22px 0}
+  .cc.in{background:rgba(20,20,24,.45);backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px)}
+  .cc-p{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;opacity:0;transform:translateY(-14px);transition:all .25s}
+  .cc.in .cc-p{opacity:1;transform:none}
+  .cc-g{grid-row:span 2;background:rgba(60,60,64,.55);border-radius:22px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .cc-t{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+  .cc-t span{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;display:flex;align-items:center;justify-content:center}
+  .cc-t small{color:#fff;font-size:9.5px}
+  .cc-t.on span{background:#fff;color:#111}#ccAir.on span{background:#ff9500;color:#fff}#ccCell.on span{background:#34c759;color:#fff}#ccWifi.on span,#ccBt.on span{background:#2f8cff;color:#fff}
+  .cc-s{grid-row:span 2;background:rgba(60,60,64,.55);border-radius:22px;display:flex;flex-direction:column-reverse;align-items:center;padding:10px 0;gap:6px}
+  .cc-s i{flex:1;width:100%;display:flex;flex-direction:column-reverse}.cc-s em{display:block;background:#fff;border-radius:0 0 22px 22px}
+  .cc-s span{font-size:18px}
+  .cc-wide{grid-column:span 3;background:rgba(60,60,64,.55);border-radius:20px;color:#fff;padding:14px 18px;display:flex;gap:10px;align-items:center;font-size:14px}
+  .cc-wide b{margin-left:auto;color:#ffcc00}
+  .cc-close{text-align:center;color:rgba(255,255,255,.6);font-size:12px;margin-top:22px;cursor:pointer}
+  .lost-bar.safe{background:#34c759;animation:none;box-shadow:0 3px 10px rgba(52,199,89,.4)}
+  .toast{position:absolute;left:50%;bottom:120px;transform:translateX(-50%);z-index:98;background:rgba(30,30,32,.92);color:#fff;font-size:13px;padding:10px 16px;border-radius:20px;white-space:nowrap}
+  .wipe{background:#000}.wp-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .6s}
+  .wipe.end .wp-in{opacity:0}.wp-bar{width:150px;height:4px;border-radius:2px;background:#333;overflow:hidden}.wp-bar i{display:block;height:100%;width:0;background:#fff;transition:width .1s}
+  .wp-in small{color:#888;font-size:12px}
+
+  /* 단서 토스트 / 성공 엔딩 */
+  .clue-t{position:absolute;left:50%;top:52px;transform:translateX(-50%);z-index:99;background:rgba(20,20,22,.9);color:#fff;font-size:12.5px;padding:8px 14px;border-radius:18px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.3);animation:ct .3s ease-out;transition:opacity .4s}
+  .clue-t b{color:#ffd60a;margin:0 3px}.clue-t small{color:#999}.clue-t.out{opacity:0}
+  @keyframes ct{from{transform:translate(-50%,-12px);opacity:0}}
+  .po-end{overflow-y:auto}
+  .sx{width:100%;padding:60px 20px 40px;text-align:left}
+  .sx-k{display:block;text-align:center;color:#ffd60a!important;font-size:11px!important;letter-spacing:2px}
+  .sx h3{text-align:center}.sx-p{text-align:center;color:#aaa;font-size:13.5px}
+  .sx-h{font-size:14px;font-weight:700;margin:20px 0 8px;color:#fff}.sx-h b{color:#ffd60a}
+  .sx-list{display:flex;flex-direction:column;gap:6px}
+  .sx-list div{background:#151517;border-radius:10px;padding:9px 12px}
+  .sx-list b{font-size:13px}.sx-list small{display:block;color:#8e8e93;font-size:11.5px;margin-top:2px;line-height:1.4}
+  .sx-list .ok b{color:#fff}.sx-list .no b{color:#444;letter-spacing:2px}
+  .sx-sus{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .sx-sus span{background:#1c1c1f;border:1px solid #2c2c30;border-radius:12px;padding:12px 0;text-align:center;cursor:pointer}
+  .sx-sus span b{display:block;font-size:15px}.sx-sus span small{color:#8e8e93;font-size:10.5px}
+  .sx-sus span.on{border-color:#ff153c;background:#2a0e14}
+  .sx-card{margin-top:16px;border-radius:14px;padding:16px;text-align:center;background:linear-gradient(150deg,#2a0e14,#111);border:1px solid #5a1a24}
+  .sx-card small{color:#ff8fa3;font-size:11px;letter-spacing:2px}.sx-card b{display:block;font-size:22px;margin:4px 0}.sx-card span{color:#8e8e93;font-size:12px}
+  .sx .po-btn{text-align:center;margin-top:14px}
+  .sx-share{text-align:center;margin-top:12px;color:#ccc;font-size:13px;border:1px solid #333;border-radius:10px;padding:11px;cursor:pointer}
+  .sx .po-re{text-align:center;margin-top:18px}
+
+  /* 가려진 항목 / 탈출 */
+  .hd-lk{display:flex;flex-direction:column;align-items:center;padding:40px 0 30px;text-align:center}
+  .hd-ic{font-size:40px}.hd-lk b{font-size:17px;margin-top:8px}.hd-lk small{color:#8e8e93;font-size:13px;margin-top:4px}
+  .hd-dots{margin:22px 0 10px}.hd-dots span{border-color:#111}.hd-dots span.on{background:#111}
+  .hd-hint{font-size:12.5px;color:#af52de;background:#f6effd;border-radius:12px;padding:6px 12px;margin-bottom:22px}
+  .hd-kp{grid-template-columns:repeat(3,72px);gap:12px 22px}.hd-kp .kp-k{width:72px;height:72px;font-size:28px}
+  .hd-a{padding:14px 16px 40px;display:flex;flex-direction:column;gap:18px}
+  .hd-ev small{color:#8e8e93;font-size:12px}.hd-cap{display:block;font-size:12.5px;color:#555;margin-top:6px}
+  .hd-shot{margin-top:6px;background:#0b0b0f;border-radius:14px;padding:12px;color:#eee;font-size:13.5px}
+  .hd-shot-h{text-align:center;font-weight:700;padding-bottom:8px;border-bottom:1px solid #222;margin-bottom:8px}
+  .hd-shot p{max-width:80%;padding:7px 11px;border-radius:14px;margin:4px 0;width:fit-content}
+  .hd-shot p.y{background:#23232b}.hd-shot p.m{background:#7c3aed;margin-left:auto}
+  .hd-shot-f{text-align:center;font-size:10.5px;color:#6b6b78;margin-top:8px}
+  .hd-ph{margin-top:6px;height:200px;border-radius:12px;background:radial-gradient(circle at 40% 45%,#5a4a3a,#2a221c 70%);position:relative;overflow:hidden;filter:saturate(.9)}
+  .hd-bag{position:absolute;left:24%;top:24%;width:44%;height:52%;border:2px solid rgba(255,255,255,.35);border-radius:8px;background:rgba(255,255,255,.08);transform:rotate(-8deg);display:flex;flex-wrap:wrap;gap:8px;padding:14px;align-content:center;justify-content:center}
+  .hd-bag i{width:18px;height:18px;border-radius:50%;background:#3b82f6;box-shadow:0 0 6px rgba(59,130,246,.6)}.hd-bag i.lg{width:34px;height:34px;background:#1d4ed8}
+  .hd-note{position:absolute;right:10%;bottom:14%;background:#fef3c7;color:#333;font-size:13px;padding:6px 9px;transform:rotate(6deg);font-family:"Nanum Pen Script",cursive;box-shadow:0 2px 6px rgba(0,0,0,.4);line-height:1.2}
+  .hd-exit{margin-top:6px;background:#111;color:#fff;text-align:center;padding:15px;border-radius:14px;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+  .clr{background:#000}.clr-door{position:absolute;inset:0;display:flex;transition:opacity .8s}
+  .clr-l,.clr-r{flex:1;background:#141416;transition:transform 1.4s cubic-bezier(.6,0,.2,1)}
+  .clr-l{border-right:1px solid #333}.clr-r{border-left:1px solid #333}
+  .clr-light{position:absolute;left:50%;top:0;bottom:0;width:0;background:#fff;box-shadow:0 0 80px 40px rgba(255,255,255,.8);transform:translateX(-50%);opacity:0;transition:all 1.4s}
+  .clr.open .clr-l{transform:translateX(-100%)}.clr.open .clr-r{transform:translateX(100%)}.clr.open .clr-light{opacity:1;width:60%}
+  .clr.end .clr-door{opacity:0;pointer-events:none}
+  .clr-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+  .clr-stat div{background:#151517;border-radius:12px;padding:12px 4px;text-align:center}.clr-stat b{display:block;font-size:19px;color:#ffd60a}.clr-stat small{color:#8e8e93;font-size:11px}
+  .clr-hint{margin:18px auto 0;width:fit-content;font-size:12.5px;color:#d8b4fe;border:1px solid #3b2a52;border-radius:14px;padding:6px 12px}
+
+  .poweroff.off2{transition:opacity .12s}
+  .po-last{position:absolute;left:0;right:0;bottom:90px;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity 1.6s}
+  .off2.end .po-last{opacity:1}
 
   /* 전원 꺼짐 */
   .poweroff{position:absolute;inset:0;z-index:200;background:#000;opacity:0;transition:opacity .8s;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center}
@@ -783,7 +892,9 @@
   <div class="status sh" id="status"><span id="sbTime">9:41</span><span class="icons">
     <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
     <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.3-1.4C13.4 1.3 10.8.2 8 .2S2.6 1.3.7 3.2L2 4.6c1.6-1.5 3.7-2.4 6-2.4z"/><path d="M8 5.8c1.3 0 2.5.5 3.4 1.3l1.3-1.4C11.5 4.5 9.8 3.8 8 3.8s-3.5.7-4.7 1.9l1.3 1.4C5.5 6.3 6.7 5.8 8 5.8z"/><path d="M8 9.2c.5 0 1 .2 1.3.5L8 11.8 6.7 9.7c.3-.3.8-.5 1.3-.5z"/></svg>
+    <svg class="sb-air" width="15" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5z"/></svg>
     <span class="bpct">3%</span><span class="batt"></span></span></div>
+  <div class="cc-hot" id="ccHot" title="제어 센터"></div>
 
   <!-- 잠금화면 -->
   <section class="view wall" id="lock" onclick="toPin()">
@@ -858,11 +969,11 @@ const CHATS = [
     ]},
   { id:"taejun", name:"개새끼", color:"#4b5563", emoji:"태",
     replies:[   // 답장하면 순서대로 오는 답 — 세라가 죽은 걸 아는 태준이, 폰을 주운 사람을 경계함
-      ["야 정세라", "아", "아니", "너 누구야", "그 폰 왜 네가 갖고 있어"],
-      ["경찰이야?", "아니면 그냥 주운 거면\n그거 아무한테도 넘기지 마", "돈은 원하는 만큼 줄게"],
-      ["대답해"],
+      ["야 정세라", "아", "아니", "너 누구야"],
+      ["그날 나 기억이 하나도 없어", "눈 떠보니까 손에 피가 묻어 있었어"],
+      ["경찰은 날 의심해", "내가 안 그랬어. 진짜야"],
     ],
-    time:"어제", unread:6,
+    time:"오전 5:20", unread:10,
     msgs:[
       {day:"3월 29일 일요일"},
       {from:"me",  t:"4일에 청평호 별장에서 브라이덜 샤워해. 와", tm:"오후 11:02"},
@@ -878,6 +989,11 @@ const CHATS = [
       {from:"you", t:"5년 동안 내가 너 뭐 하고 다녔는지 다 봤는데\n이제 와서 고상한 척을 해?", tm:"오전 2:03"},
       {from:"you", t:"전화 받아 정세라", tm:"오전 2:06"},
       {from:"you", voice:"VOICE_TJ", dur:"0:03", tm:"오전 2:08"},
+      {day:"4월 5일 일요일"},
+      {from:"you", t:"세라야", tm:"오전 5:12"},
+      {from:"you", t:"나 방금 깼는데 손에 피가 묻어 있어", tm:"오전 5:12"},
+      {from:"you", t:"이거 뭐야", tm:"오전 5:13"},
+      {from:"you", t:"어디야 너", tm:"오전 5:20"},
     ]},
   { id:"soyeon", name:"소연이 🤍", color:"#f9a8c9", emoji:"소", time:"4/3", unread:0,
     msgs:[
@@ -914,9 +1030,9 @@ const CHATS = [
       {from:"you", t:"방마다 하나씩. 아무도 몰라", tm:"오후 10:03"},
       {from:"you", t:"최태준 몇 시에 온대", tm:"오후 10:20"},
       {from:"me",  t:"몰라 저녁쯤", tm:"오후 10:31"},
-      {from:"you", t:"걔 방 1층으로 뺐어", tm:"오후 10:31"},
-      {from:"me",  t:"잘했네", tm:"오후 10:34"},
-      {from:"you", t:"누나 근처엔 못 오게 할게", tm:"오후 10:35"},
+      {from:"you", t:"걔 방 누나 방이랑 붙여놨어. 말한 대로", tm:"오후 10:31"},
+      {from:"you", t:"근데 왜 굳이 걔를 누나 옆에 둬", tm:"오후 10:32"},
+      {from:"me",  t:"그래야 확실하잖아", tm:"오후 10:34"},
     ]},
   { id:"jisoo", name:"지수", color:"#6b8fd6", emoji:"지", time:"4/3", unread:0,
     msgs:[
@@ -925,6 +1041,9 @@ const CHATS = [
       {from:"you", t:"피팅룸 앞에서 기다리다가 그냥 나왔어요 ㅎㅎ\n파우치에 넣어놨어요", tm:"오후 4:52"},
       {from:"me",  t:"응", tm:"오후 5:30"},
       {day:"4월 2일 목요일"},
+      {from:"you", t:"언니 저 학과 뉴스레터에 나왔어요 ㅎㅎ", tm:"오후 9:02"},
+      {from:"you", link:{src:"chem.hankuk.ac.kr", t:"한국대학교 화학공학과 | 2026 봄 뉴스레터", d:"학과 소식 · 연구실 탐방 · 공지사항", go:"site:univ"}, tm:"오후 9:02"},
+      {from:"me",  t:"오 대박", tm:"오후 9:30"},
       {from:"you", t:"언니 파티 때 쓸 거 더 챙겨갈게요", tm:"오후 11:40"},
       {from:"me",  t:"넉넉하게", tm:"오후 11:52"},
       {from:"you", t:"네 ㅎㅎ 이번 달 용돈은요?", tm:"오후 11:53"},
@@ -1005,11 +1124,11 @@ const EVENTS = {
 };
 
 const WEATHER = {
-  place:"가평군", sub:"청평호", now:9, desc:"흐림 · 짙은 안개", hi:14, lo:6,
-  notice:"새벽 사이 내린 비는 그쳤습니다. 호수 주변 짙은 안개로 가시거리가 매우 짧습니다.",
+  place:"가평군", sub:"청평호", now:9, desc:"흐림 · 짙은 안개", hi:14, lo:1,
+  notice:"새벽 사이 기온이 1°까지 떨어졌습니다. 호수 주변 짙은 안개로 가시거리가 매우 짧습니다.",
   hourly:[["지금","🌫",9],["오전 11시","🌫",10],["오후 12시","☁️",11],["오후 1시","☁️",12],["오후 2시","🌤",13],["오후 3시","🌤",14],["오후 4시","🌤",13],["오후 5시","☁️",12],["오후 6시","☁️",10]],
-  daily:[["오늘","🌫",6,14],["월","☀️",5,17],["화","☀️",7,18],["수","🌤",8,19],["목","☁️",9,18],["금","🌦",8,16]],
-  extra:[["호수 수온","8°"],["일몰","오후 7:01"],["풍속","3m/s"],["습도","91%"]],
+  daily:[["오늘","🌫",1,14],["월","☀️",5,17],["화","☀️",7,18],["수","🌤",8,19],["목","☁️",9,18],["금","🌦",8,16]],
+  extra:[["호수 수온","4°"],["일몰","오후 7:01"],["풍속","3m/s"],["습도","91%"]],
 };
 
 const ALARMS = (()=>{            // 오후 11:45 ~ 밤 12:00, 1분 간격
@@ -1045,6 +1164,10 @@ const INSTA = {
 };
 
 const DMS = [
+  {from:"__._.__0", av:"#c7c7cc", time:"4/3", unread:true, egg:true, msgs:[
+    "태준오빠 입단속 시켜요",
+    "그날 일 술만 마시면 떠들고 다니던데",
+    "언니 결혼식 전에 다 터지면 어쩌려고"]},
   {from:"borrowed.life", av:"#111827", time:"어제", unread:true, msgs:[
     "그렇게 웃으면 다 덮어지는 줄 알아?",
     "네가 뭘 가져갔는지 난 다 기억해",
@@ -1113,7 +1236,7 @@ const TIMELINE = {
   bat2:     150,  // 배터리 2%
   bat1:     240,  // 배터리 1% + 경고
   off:      300,  // 전원 꺼짐 → 엔딩 화면
-  lost:     120,  // 나의 찾기 '분실 모드' 전환 + 원격 삭제 카운트다운 시작
+  lost:     120,  // 나의 찾기 '분실 모드' 알림 (도윤이 이 폰을 찾고 있음)
   airdrop:  95,   // AirDrop 수신 (소연의 iPhone)
 };
 // 다른 알림/전화/경고창이 떠 있으면 끝날 때까지 기다렸다가 순서대로 띄워요
@@ -1220,6 +1343,7 @@ const GHOST = [
     {day:"4월 5일 일요일"},
     {from:"you", t:"세라야", tm:"오전 9:12", unread:true},
     {from:"you", t:"연락 왜 없어", tm:"오전 9:40", unread:true},
+    {from:"you", link:{src:"스타데일리", t:"[속보] 가평 청평호 인근서 20대 여성 숨진 채 발견", d:"경찰은 호숫가 주변에서 혈흔과 함께 정체불명의 푸른 물질을 수거해 성분 분석을…"}, tm:"오전 10:31", unread:true},
     {from:"you", t:"뉴스 뭐야 이거", tm:"오전 10:31", unread:true},
   ]},
   { id:"anon", name:"익명 #4471", av:"#111", init:"?", deleted:212, msgs:[
@@ -1230,8 +1354,11 @@ const GHOST = [
     {from:"you", t:"이번 건 몸 안에서 하루면 안 남아", tm:"오후 1:12", ttl:1},
     {from:"you", t:"결제는 늘 하던 대로", tm:"오후 1:12", ttl:1},
     {from:"me", t:"5일에 들어가", tm:"오후 1:20", ttl:1},
-    {from:"you", t:"현장에서 직접 줄게", tm:"오후 1:21", ttl:1},
+    {from:"you", t:"현장에서 직접 줄게 ㅎㅎ", tm:"오후 1:21", ttl:1},
     {from:"you", t:"2층에서 봐", tm:"오후 11:41", ttl:1},
+    {from:"you", t:"이번 건 좀 달라. 조심해서 해", tm:"오후 11:46", ttl:1},
+    {from:"you", t:"차가운 데 두지 마. 굳어", tm:"오후 11:46", ttl:1},
+    {from:"me", t:"ㅇㅋ", tm:"오후 11:48", ttl:1},
   ]},
 ];
 
@@ -1432,6 +1559,24 @@ function scheduleCall(){
   setTimeout(startDim, TIMELINE.bat1*1000);
 
 }
+// ---- 단서 수집 (성공 엔딩에서 보여줌)
+const CLUES = [
+  {id:"fit",   t:"피팅룸 대화",      d:"4/1 세라와 도윤의 계획 — 그날 피팅룸 앞엔 지수가 있었다", where:"카톡 · 지수"},
+  {id:"plan",  t:"객실 배정과 가습기", d:"\"방마다 하나씩. 아무도 몰라\"", where:"카톡 · 도윤"},
+  {id:"anon",  t:"익명 #4471",       d:"\"5일에 들어가\" — 용돈 날짜와 같은 결제일, 2층, 새로 만든 약", where:"TeleGhost"},
+  {id:"mina",  t:"미나와의 대화",     d:"\"검진 소변도 지수가 안 남는 거 구해줬고\"", where:"TeleGhost"},
+  {id:"health",t:"심박수 기록",       d:"23:50 약물 반응 → 00:14 충격 → 00:38 정지", where:"건강"},
+  {id:"bank",  t:"자동이체 내역",     d:"매월 5일 강지수 2,000,000원 · 4/3 하이마트 청평점", where:"오성뱅크"},
+  {id:"med",   t:"건강검진 결과지",   d:"메스암페타민 양성 → 지수에게 전달", where:"메일"},
+  {id:"report",t:"사전검진 결과서",   d:"원본과 세탁본 — 도윤이 지운 것들", where:"메일"},
+  {id:"villa", t:"화재경보기 고장",   d:"4/3부터 2층 화재감지기 작동 중지", where:"Safari"},
+  {id:"hall",  t:"2층 복도 사진",     d:"AirDrop · 소연의 iPhone", where:"사진"},
+];
+const FOUND = new Set();
+const HIDDEN_CODE = "2350";   // 가려진 항목 암호 = 건강 앱 심박 그래프의 23:50
+function clue(id){ if(FOUND.has(id)) return; FOUND.add(id); const c=CLUES.find(x=>x.id===id); if(!c) return;
+}
+
 // ---- 배터리 타임어택
 var _unlockAt=Date.now();
 function setBattery(n){
@@ -1442,18 +1587,67 @@ function lastBattery(){
   ding();
   const old=document.querySelector(".alert-bg.bat"); if(old) old.remove();
   const bg=document.createElement("div"); bg.className="alert-bg bat";
-  bg.innerHTML=`<div class="alert"><b>배터리 1%</b><p>곧 전원이 꺼집니다.<br>남은 단서를 빨리 확인하세요.</p><div id="tvGo2" style="font-weight:600">TVING에서 이어보기</div><div>닫기</div></div>`;
+  bg.innerHTML=`<div class="alert"><b>배터리 1%</b><p>곧 전원이 꺼집니다.</p><div id="tvGo2" style="font-weight:600">TVING에서 이어보기</div><div>닫기</div></div>`;
   bg.querySelectorAll(".alert div").forEach(d=>d.onclick=()=>{ bg.remove(); if(d.id==="tvGo2") openLink(TVING_URL); });
   $("screen").appendChild(bg);
 }
 // ---- 나의 찾기: 분실 모드 + 원격 삭제 카운트다운 (전원 꺼짐 시각과 같이 끝남)
 function lostMode(){
-  redAlert("분실 모드로 전환됨","이 iPhone이 <b>'정도윤의 iPhone'</b>에서<br>분실 모드로 전환되었습니다.<br>원격 삭제가 예약되었습니다.","확인");
-  const bar=document.createElement("div"); bar.className="lost-bar"; bar.innerHTML=`🔒 원격 삭제까지 <b id="lostT">--:--</b>`;
-  $("screen").appendChild(bar);
-  const end=_unlockAt+TIMELINE.off*1000;
-  const tk=()=>{ const ms=Math.max(0,end-Date.now()); const m=Math.floor(ms/60000), sec=Math.floor(ms/1000)%60; const t=$("lostT"); if(t) t.textContent=`${pad2(m)}:${pad2(sec)}`; if(ms<=0) clearInterval(iv); };
-  const iv=setInterval(tk,250); tk();
+  window._lost=true;
+  redAlert("분실 모드로 전환됨","이 iPhone이 <b>'정도윤의 iPhone'</b>에서<br>분실 모드로 전환되었습니다.<br>현재 위치가 실시간으로 전송됩니다.","확인");
+}
+// ---- 제어 센터 (비행기 모드)
+function openCC(){
+  if($("cc")) return;
+  const tile=(id,on,ic,lab)=>`<div class="cc-t ${on?"on":""}" id="${id}"><span>${ic}</span><small>${lab}</small></div>`;
+  const air=!!window._airplane;
+  const c=document.createElement("div"); c.id="cc"; c.className="cc";
+  c.innerHTML=`<div class="cc-p">
+    <div class="cc-g">
+      ${tile("ccAir",air,'<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5z"/></svg>',"비행기 모드")}
+      ${tile("ccCell",!air,'<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="15" width="3" height="5" rx="1"/><rect x="8" y="11" width="3" height="9" rx="1"/><rect x="13" y="7" width="3" height="13" rx="1"/><rect x="18" y="3" width="3" height="17" rx="1"/></svg>',"셀룰러")}
+      ${tile("ccWifi",!air,'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2.5 9a14 14 0 0 1 19 0M6 12.5a9 9 0 0 1 12 0M9.5 16a4 4 0 0 1 5 0"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/></svg>',"Wi-Fi")}
+      ${tile("ccBt",false,'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 4V3l5 4L7 17"/></svg>',"Bluetooth")}
+    </div>
+    <div class="cc-s"><span>🔆</span><i><em style="height:30%"></em></i></div>
+    <div class="cc-s"><span>🔊</span><i><em style="height:55%"></em></i></div>
+    <div class="cc-wide"><span class="cc-lpm">🔋</span>저전력 모드 <b>켬</b></div>
+  </div><div class="cc-close">탭해서 닫기</div>`;
+  $("screen").appendChild(c); requestAnimationFrame(()=>c.classList.add("in"));
+  const close=()=>{ c.classList.remove("in"); setTimeout(()=>c.remove(),250); };
+  c.onclick=e=>{ if(e.target===c||e.target.classList.contains("cc-close")) close(); };
+  $("ccAir").onclick=e=>{ e.stopPropagation(); setAirplane(!window._airplane); $("ccAir").classList.toggle("on",!!window._airplane);
+    $("ccCell").classList.toggle("on",!window._airplane); $("ccWifi").classList.toggle("on",!window._airplane); };
+}
+function setAirplane(on){
+  window._airplane=on; $("status").classList.toggle("air",on);
+  if(false){ window._airToast=true; setTimeout(()=>{ const t=document.createElement("div"); t.className="toast"; t.textContent="✈︎ 원격 삭제 신호가 차단되었습니다"; $("screen").appendChild(t); setTimeout(()=>t.remove(),2600); },300); }
+}
+// ---- 원격 삭제 엔딩
+function remoteWipe(){
+  if(window._ended) return; window._ended=true;
+  document.querySelectorAll(".lost-bar,.dim,.alert-bg,.banner,#cc,.cbox,.pv,.viewer").forEach(e=>e.remove()); $("screen").classList.remove("glitch");
+  try{ stopRing(); }catch(e){} closeCamera();
+  // 1) 열려 있던 앱 강제 종료 → 홈 화면에서 앱들이 하나씩 사라짐
+  $("app").classList.remove("open"); show("home"); warnTone();
+  const icons=[...document.querySelectorAll("#home .app, #home .widget")];
+  icons.forEach((el,i)=>setTimeout(()=>{ el.style.transition="opacity .25s, transform .25s"; el.style.opacity=0; el.style.transform="scale(.6)"; }, 120+i*90));
+  const t=document.createElement("div"); t.className="toast"; t.style.bottom="auto"; t.style.top="90px"; t.textContent="⚠️ 원격 삭제 명령 수신 · 모든 콘텐츠 지우는 중"; $("screen").appendChild(t);
+  setTimeout(()=>{ t.remove(); wipeScreen(); }, 600+icons.length*90);
+}
+function wipeScreen(){
+  const o=document.createElement("div"); o.className="poweroff wipe";
+  o.innerHTML=`<div class="wp-in"><svg width="54" height="54" viewBox="0 0 24 24" fill="#fff"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.9-.9-3.1-.8C6.8 7.4 5.3 8.3 4.5 9.8c-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.4 2.9 2.4 1.2 0 1.6-.8 3-.8s1.8.8 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.7 0 0-2.4-.9-2.3-4zM14.2 5.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>
+      <div class="wp-bar"><i id="wpBar"></i></div><small id="wpTxt">iPhone 지우는 중…</small></div>
+    <div class="po-end">
+      <small>원격 삭제 완료</small>
+      <h3>정세라의 휴대폰이 초기화되었습니다</h3>
+      <p>메시지, 사진, 기록… 모든 증거가 사라졌습니다.<br>누군가는 이 폰이 꺼지기를 기다리고 있었습니다.<br>그날 밤의 진실은 탐정 백마리가 밝혀냅니다.</p>
+      <div class="po-btn" id="poTv">「디텍티브 코드」 TVING에서 보기</div>
+      <div class="po-re" id="poRe">↺ 다시 도전하기 (힌트: 비행기 모드)</div></div>`;
+  $("screen").appendChild(o); requestAnimationFrame(()=>o.classList.add("on"));
+  let pct=0; const iv=setInterval(()=>{ pct+=4; const b=$("wpBar"); if(b) b.style.width=pct+"%"; if(pct>=100){ clearInterval(iv); setTimeout(()=>o.classList.add("end"),500); } },110);
+  $("poTv").onclick=()=>openLink(TVING_URL); $("poRe").onclick=()=>location.reload();
 }
 // ---- AirDrop (소연의 iPhone)
 function airDrop(){
@@ -1462,7 +1656,7 @@ function airDrop(){
   bg.innerHTML=`<div class="alert ad"><div class="ad-ico"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2f8cff" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="1.8" fill="#2f8cff"/><path d="M8.5 15.5a5 5 0 1 1 7 0"/><path d="M6 18a8.5 8.5 0 1 1 12 0"/></svg></div><b>AirDrop</b><p><b>'소연의 iPhone'</b>님이<br>사진 1장을 공유하려고 합니다.</p><div class="ad-prev"></div><div class="ad-btns"><span id="adNo">거절</span><span id="adYes">수락</span></div></div>`;
   $("screen").appendChild(bg);
   $("adNo").onclick=()=>bg.remove();
-  $("adYes").onclick=()=>{ bg.remove(); MY_SHOTS.unshift(HALL_IMG); closeCamera(); openApp("gal");
+  $("adYes").onclick=()=>{ bg.remove(); setTimeout(()=>clue("hall"),900); MY_SHOTS.unshift(HALL_IMG); closeCamera(); openApp("gal");
     setTimeout(()=>openViewer([{c:IMG(HALL_IMG), d:"9999", t:""}],0),350); };
 }
 // ---- 1%부터 화면 점점 어두워짐 + 마지막 10초 지직거림
@@ -1473,22 +1667,73 @@ function startDim(){
   const iv=setInterval(()=>{ const r=Math.min(1,(Date.now()-t0)/dur); dim.style.opacity=(r*0.6).toFixed(3);
     if(dur-(Date.now()-t0)<10000) $("screen").classList.add("glitch"); if(r>=1){ clearInterval(iv); $("screen").classList.remove("glitch"); } },200);
 }
+function escapeClear(){
+  if(window._ended) return; window._ended=true;
+  document.querySelectorAll(".lost-bar,.dim,.alert-bg,.banner,#cc,.cbox,.pv").forEach(e=>e.remove()); $("screen").classList.remove("glitch");
+  try{ stopRing(); }catch(e){} closeCamera();
+  const sec=Math.floor((Date.now()-_unlockAt)/1000);
+  const o=document.createElement("div"); o.className="poweroff clr";
+  o.innerHTML=`<div class="clr-door"><div class="clr-l"></div><div class="clr-r"></div><div class="clr-light"></div></div>
+    <div class="po-end" style="justify-content:flex-start;padding:0"><div class="sx">
+      <small class="sx-k">ESCAPE CLEAR</small>
+      <h3 style="font-size:26px">탈출 성공</h3>
+      <p class="sx-p">폰이 꺼지기 전에 결정적 증거를 찾아냈습니다.</p>
+      <div class="clr-stat"><div><b>${pad2(Math.floor(sec/60))}:${pad2(sec%60)}</b><small>탈출 시간</small></div><div><b>${window._airplane?"차단":window._lost?"위험":"안전"}</b><small>원격 삭제</small></div><div><b>${3}%</b><small>남은 배터리</small></div></div>
+      <div class="sx-h" style="margin-top:22px">세라를 죽인 사람은?</div>
+      <div class="sx-sus">${[["태준","전남친"],["소연","10년지기"],["도윤","이복동생"],["지수","사촌동생"]].map(([nm,r])=>`<span data-n="${nm}"><b>${nm}</b><small>${r}</small></span>`).join("")}</div>
+      <div class="sx-res" id="sxRes"></div>
+      <div class="po-re" id="poRe2">↺ 처음부터 다시 하기</div>
+    </div></div>`;
+  $("screen").appendChild(o);
+  const bp=document.querySelector(".bpct"); if(bp) o.querySelector(".clr-stat div:nth-child(3) b").textContent=bp.textContent;
+  requestAnimationFrame(()=>o.classList.add("on")); setTimeout(()=>o.classList.add("open"),600); setTimeout(()=>o.classList.add("end"),2200);
+  bindSuccess(o);
+}
+function successHTML(){
+  const n=FOUND.size;
+  return `<div class="sx">
+    <small class="sx-k">TIME OVER</small>
+    <h3>탈출구를 찾지 못했습니다</h3>
+    <p class="sx-p">원격 삭제는 막았지만, 배터리가 먼저 꺼졌습니다.<br>세라가 마지막으로 숨겨둔 것이 이 폰 어딘가에 있었습니다.</p>
+    <div class="clr-hint">힌트 · 사진 앱 맨 아래, 잠긴 앨범</div>
+    <div class="po-btn" id="poTv3" style="text-align:center;margin-top:26px">「디텍티브 코드」 TVING에서 보기</div>
+    <div class="po-re" id="poRe2">↺ 다시 도전하기</div>
+  </div>`;
+}
+function bindSuccess(o){
+  o.querySelectorAll(".sx-sus span").forEach(b=>b.onclick=()=>{
+    o.querySelectorAll(".sx-sus span").forEach(x=>x.classList.toggle("on",x===b));
+    const nm=b.dataset.n;
+    $("sxRes").innerHTML=`<div class="sx-card"><small>나의 추리</small><b>범인은 ${nm}</b><span>단서 ${FOUND.size}/${CLUES.length}개로 내린 결론</span></div>
+      <div class="po-btn" id="poTv2">정답 확인하기 · TVING</div>
+      <div class="sx-share" id="sxShare">내 추리 공유하기</div>`;
+    $("poTv2").onclick=()=>openLink(TVING_URL);
+    $("sxShare").onclick=()=>{ const txt=`나는 ${nm}를 범인으로 지목했다. (단서 ${FOUND.size}/${CLUES.length}) — 정세라의 휴대폰`; const url=location.href;
+      if(navigator.share) navigator.share({title:"정세라의 휴대폰",text:txt,url}).catch(()=>{}); else { navigator.clipboard&&navigator.clipboard.writeText(txt+" "+url); $("sxShare").textContent="링크 복사됨 ✓"; } };
+    o.querySelector(".po-end").scrollTop=1e9;
+  });
+  $("poRe2").onclick=()=>location.reload();
+  const t3=o.querySelector("#poTv3"); if(t3) t3.onclick=()=>openLink(TVING_URL);
+}
 function powerOff(){
-  document.querySelectorAll(".lost-bar,.dim").forEach(e=>e.remove()); $("screen").classList.remove("glitch");
+  if(window._ended) return; window._ended=true;
+  document.querySelectorAll(".lost-bar,.alert-bg,#cc,.cc").forEach(e=>e.remove());
   try{ stopRing(); if(callAudio&&callAudio.pause) callAudio.pause(); }catch(e){}
   closeCamera();
-  const o=document.createElement("div"); o.className="poweroff";
-  o.innerHTML=`<div class="po-batt"><span></span></div><div class="po-end">
-      <small>4월 5일 오전 ${new Date(SIM_START.getTime()+(Date.now()-_t0)).getHours()%12||12}:${pad2(new Date(SIM_START.getTime()+(Date.now()-_t0)).getMinutes())}</small>
-      <h3>정세라의 휴대폰 전원이 꺼졌습니다</h3>
-      <p>이 폰이 기억하는 건 여기까지.<br>그날 밤 2층에서 무슨 일이 있었는지는<br>탐정 백마리가 밝혀냅니다.</p>
-      <div class="po-btn" id="poTv">「디텍티브 코드」 TVING에서 보기</div>
-      <div class="po-re" id="poRe">↺ 처음부터 다시 보기</div></div>`;
-  $("screen").appendChild(o);
-  requestAnimationFrame(()=>o.classList.add("on"));
-  setTimeout(()=>o.classList.add("end"), 2600);
-  $("poTv").onclick=()=>openLink(TVING_URL);
-  $("poRe").onclick=()=>location.reload();
+  // 마지막 메시지: 지수
+  const c=KAKAO.find(x=>x.id==="jisoo"); const now=new Date(SIM_START.getTime()+(Date.now()-_t0)); const hh=now.getHours();
+  const tm=`${hh<12?"오전":"오후"} ${hh%12||12}:${pad2(now.getMinutes())}`;
+  if(!c.msgs.some(m=>m.day==="4월 5일 일요일")) c.msgs.push({day:"4월 5일 일요일"});
+  c.msgs.push({from:"you",t:"언니 폰 누가 갖고 있어요?",tm}); c.unread++; c.time=tm;
+  showBanner({app:"카카오톡", title:"지수", body:"언니 폰 누가 갖고 있어요?", chat:"jisoo"});
+  setTimeout(()=>{
+    document.querySelectorAll(".dim").forEach(e=>e.remove()); $("screen").classList.remove("glitch");
+    const o=document.createElement("div"); o.className="poweroff off2";
+    o.innerHTML=`<div class="po-last"><div class="po-btn" id="poTv">「디텍티브 코드」 TVING에서 보기</div><div class="po-re" id="poRe">↺ 처음부터 다시 보기</div></div>`;
+    $("screen").appendChild(o); o.classList.add("on");
+    setTimeout(()=>o.classList.add("end"), 4000);
+    $("poTv").onclick=()=>openLink(TVING_URL); $("poRe").onclick=()=>location.reload();
+  }, 2200);
 }
 function warnTone(){
   const c=getCtx(); if(!c) return; if(c.state==="suspended") c.resume();
@@ -1771,6 +2016,8 @@ function openViewer(list, idx){
   window.homePage=go;
 })();
 
+$("ccHot").onclick=()=>{ if(document.getElementById("home").classList.contains("hidden") && !$("app").classList.contains("open")) return; openCC(); };
+
 // 앱 열기
 let stack = [];
 function openApp(k){ stack=[]; render(k); $("app").classList.add("open"); const dk=(k==="calc"); $("status").classList.toggle("dark",!dk); $("homebar").classList.toggle("light",dk); $("app").classList.toggle("dark-app",dk); }
@@ -1845,6 +2092,7 @@ function render(k, isBack){
     });
   }
   else if(k.startsWith("chat:")){
+    { const id=k.slice(5); if(id==="jisoo") clue("fit"); if(id==="doyoon") clue("plan"); }
     const c = findChat(k.slice(5)), isK = KAKAO.includes(c);
     title.textContent= isK ? c.name : "";
     if(c.id==="doyoon" && !window._doRead){ window._doRead=true;
@@ -1929,10 +2177,40 @@ function render(k, isBack){
     });
     const alb=document.createElement("div"); alb.className="ph-alb";
     alb.innerHTML=`<div class="ph-alb-h">기타</div>
-      <div class="ph-alb-r"><span>🙈</span>가려진 항목<small>🔒</small></div>
       <div class="ph-alb-r" id="phTrash"><span>🗑</span>최근 삭제된 항목<small>${DELETED.length} 🔒</small></div>`;
-    setTimeout(()=>{ const t=$("phTrash"); if(t) t.onclick=()=>render("trash"); },0);
+    setTimeout(()=>{ const t=$("phTrash"); if(t) t.onclick=()=>render("trash"); const h=$("phHidden"); if(h) h.onclick=()=>render(window._hiddenOpen?"hidden":"hiddenLock"); },0);
     body.appendChild(g); body.appendChild(alb);
+  }
+  else if(k==="hiddenLock"){
+    title.textContent="가려진 항목"; body.style.background="#fff";
+    let code="";
+    body.innerHTML=`<div class="hd-lk"><div class="hd-ic">🔒</div><b>가려진 항목은 잠겨 있습니다</b><small>세라가 정한 암호 4자리를 입력하세요</small>
+      <div class="dots hd-dots" id="hdDots"><span></span><span></span><span></span><span></span></div>
+      <div class="hd-hint">힌트 · 그날 밤, 그녀의 심장이 처음 무너진 시각</div>
+      <div class="kp-grid hd-kp">${["1","2","3","4","5","6","7","8","9","","0","⌫"].map(d=>`<div class="kp-k" data-d="${d}" style="${d?"":"visibility:hidden"}">${d}</div>`).join("")}</div></div>`;
+    const paint=()=>[...$("hdDots").children].forEach((x,i)=>x.classList.toggle("on",i<code.length));
+    body.querySelectorAll(".hd-kp .kp-k").forEach(el=>el.onclick=()=>{ const d=el.dataset.d; if(!d) return;
+      if(d==="⌫") code=code.slice(0,-1); else if(code.length<4){ code+=d; dtmf(d); }
+      paint();
+      if(code.length===4){ setTimeout(()=>{ if(code===HIDDEN_CODE){ window._hiddenOpen=true; ding(); render("hidden",true); }
+        else { $("hdDots").classList.add("shake"); setTimeout(()=>{ $("hdDots").classList.remove("shake"); code=""; paint(); },600); } },150); } });
+  }
+  else if(k==="hidden"){
+    title.textContent="가려진 항목"; body.style.background="#fff";
+    body.innerHTML=`<div class="hd-a">
+      <div class="hd-ev">
+        <small>스크린샷 · 4월 4일 오후 11:47</small>
+        <div class="hd-shot"><div class="hd-shot-h">👻 익명 #4471</div>
+          <p class="y">2층에서 봐</p><p class="y">이번 건 새로 만든 거야. 언니 거만 따로</p><p class="y">한 번에 다 넣어. 그래야 빨리 와</p><p class="m">ㅇㅋ</p>
+          <div class="hd-shot-f">🕓 이 메시지는 24시간 후 자동 삭제됩니다</div></div>
+        <span class="hd-cap">세라가 지워지기 전에 캡처해 둔 대화</span></div>
+      <div class="hd-ev">
+        <small>사진 · 4월 4일 오후 11:49</small>
+        <div class="hd-ph"><div class="hd-bag"><i></i><i></i><i></i><i class="lg"></i></div><div class="hd-note">J — 언니 거<br>×2</div></div>
+        <span class="hd-cap">2층 끝방 협탁 위. 다른 사람들 것보다 두 배 큰 파란 알약</span></div>
+      <div class="hd-exit" id="hdExit">🚪 증거를 들고 이 폰에서 나가기</div>
+    </div>`;
+    $("hdExit").onclick=escapeClear;
   }
   else if(k==="trash"){
     title.textContent="최근 삭제된 항목"; body.style.background="#fff";
@@ -2147,7 +2425,7 @@ function render(k, isBack){
       ${m.quote?`<div class="mv-q">${m.quote}</div>`:""}</div>`;
     if(m.att) $("mvAtt").onclick=()=>render("doc:"+m.att.rep);
   }
-  else if(k==="doc:med"){
+  else if(k==="doc:med"){ clue("med");
     title.textContent="건강검진_결과지_정세라.pdf"; body.style.background="#8e8e93";
     const rows=[["혈액검사 (일반)","정상","-"],["간기능 (AST/ALT)","38 / 52","경계 · 재검 권고"],["소변 일반검사","정상","-"],
       ["소변 약물 선별검사","메스암페타민 양성","확진검사 및 전문의 상담 권고"],["임신 반응 검사","음성","-"],["흉부 X-ray","정상","-"],["복부 초음파","지방간 경도","생활습관 개선"]];
@@ -2166,7 +2444,7 @@ function render(k, isBack){
       <div class="doc-sign">2026년 3월 26일<br>판정의 · 내과 전문의 <span class="doc-stamp" style="border-color:#0f766e;color:#0f766e">판정</span></div>
     </div></div>`;
   }
-  else if(k.startsWith("doc:")){
+  else if(k.startsWith("doc:")){ clue("report");
     const R=REPORT[k.slice(4)], washed=k.slice(4)==="wash";
     if(!washed && !window._origWarned){ window._origWarned=true; setTimeout(()=>redAlert("대외비 문서 열람 감지","이 문서는 열람 추적이 설정된 대외비 문서입니다.<br><b>열람 기록(기기·시각·위치)이 오성그룹 비서실에 전송되었습니다.</b>","확인"),600); } title.textContent=washed?"사전검진_결과서_최종.pdf":"사전검진_결과서.pdf"; body.style.background="#8e8e93";
     body.innerHTML=`<div class="doc"><div class="doc-p">
@@ -2182,7 +2460,7 @@ function render(k, isBack){
       <div class="doc-sign">2026년 3월 31일<br>오성그룹 비서실 인사검증팀장 <span class="doc-stamp">검인</span></div>
     </div></div>`;
   }
-  else if(k==="health"){
+  else if(k==="health"){ clue("health");
     title.textContent=""; body.style.background="#f2f2f7";
     // 4/4 21:00 ~ 4/5 01:00 (분) — 23:50 약물 투여 → 심박 급등·불규칙 / 00:14 넘어짐(충격) / 00:16~00:33 호숫가까지 보행 / 00:38 기록 끊김
     const pts=[[0,92],[20,96],[40,94],[60,101],[80,98],[100,104],[120,100],[140,106],[160,103],[170,108],[173,121],[175,149],[177,162],[179,171],[181,158],[183,176],[185,151],[188,168],[190,172],
@@ -2246,7 +2524,7 @@ function render(k, isBack){
           <div class="gh-r"><small>${last.tm}</small>${un?`<i>${un}</i>`:`<em>🕓 24h</em>`}</div></div>`; }).join("");
     body.querySelectorAll(".gh-row").forEach(el=>el.onclick=()=>render("ghost:"+el.dataset.i));
   }
-  else if(k.startsWith("ghost:")){
+  else if(k.startsWith("ghost:")){ clue(k==="ghost:1"?"anon":"mina");
     const c=GHOST[+k.slice(6)]; title.textContent=""; body.style.background="#0b0b0f";
     body.innerHTML=`<div class="sc-hd"><span class="gh-av sm" style="background:${c.av}">${c.init}</span><b>${c.name}</b><small>🕓 자동 삭제 · 읽은 후 24시간</small></div>
       <div class="chat sc" id="scW"><div class="gh-del">🗑 24시간이 지난 메시지 ${c.deleted}개가 자동으로 삭제되었습니다.</div></div>`;
@@ -2282,7 +2560,7 @@ function render(k, isBack){
     }
     setTimeout(()=>body.scrollTop=body.scrollHeight,0);
   }
-  else if(k==="bank"){
+  else if(k==="bank"){ clue("bank");
     const B=BANK; title.textContent=B.name;
     const won=n=>(n<0?"-":"")+Math.abs(n).toLocaleString("ko-KR")+"원";
     let tab=window._bankTab||"tx";
@@ -2296,7 +2574,7 @@ function render(k, isBack){
         <div class="bk-tabs"><div data-t="tx" class="${tab==="tx"?"on":""}">거래내역</div><div data-t="auto" class="${tab==="auto"?"on":""}">자동이체</div></div>
         ${tab==="tx"?rows:auto}<div style="height:30px"></div>`;
       body.querySelectorAll(".bk-tabs div").forEach(el=>el.onclick=()=>{ tab=window._bankTab=el.dataset.t; draw(); });
-      body.querySelectorAll(".bk-x").forEach(el=>el.onclick=()=>redAlert("이상 거래 감지","등록되지 않은 기기 사용 패턴이 감지되었습니다.<br>고객 보호를 위해 <b>이체·카드 기능이 일시 정지</b>되며,<br>명의자 정세라 님께 알림이 발송됩니다.","확인"));
+      body.querySelectorAll(".bk-x,.bk-row,.bk-auto").forEach(el=>{ el.style.cursor="pointer"; el.onclick=()=>redAlert("이상 거래 감지","등록되지 않은 기기 사용 패턴이 감지되었습니다.<br>고객 보호를 위해 <b>이체·카드 기능이 일시 정지</b>되며,<br>명의자 정세라 님께 알림이 발송됩니다.","확인"); });
     };
     draw();
   }
@@ -2335,15 +2613,15 @@ function render(k, isBack){
   else if(k==="dm"){
     title.textContent="메시지";
     body.innerHTML=`<div class="dm-req">요청 ${DMS.length}개</div>`+DMS.map((d,i)=>`<div class="dm-row${d.unread?" unread":""}" data-i="${i}">
-      <div class="a" style="background:${d.av}"></div><div class="m"><div>${d.from}</div><div>${d.msgs[d.msgs.length-1]} · ${d.time}</div></div>${d.unread?`<span class="dot"></span>`:""}</div>`).join("");
+      <div class="a" style="background:${d.av}">${d.egg?`<svg width="52" height="52" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="9.5" r="4"/><path d="M4 21c1.2-4 4.4-6 8-6s6.8 2 8 6z"/></svg>`:""}</div><div class="m"><div>${d.from}</div><div>${d.msgs[d.msgs.length-1]} · ${d.time}</div></div>${d.unread?`<span class="dot"></span>`:""}</div>`).join("");
     body.querySelectorAll(".dm-row").forEach(el=>el.onclick=()=>render("dmt:"+el.dataset.i));
   }
   else if(k.startsWith("dmt:")){
     const d=DMS[+k.slice(4)]; d.unread=false; title.textContent=d.from;
-    const fans={"minji_0412":"1.2천","hani.bride":"842","gossip_daily_kr":"3.1만","borrowed.life":"0","user_29381":"3"};
+    const fans={"minji_0412":"1.2천","hani.bride":"842","gossip_daily_kr":"3.1만","borrowed.life":"0","user_29381":"3","__._.__0":"0"};
     body.style.background="#fff";
-    let h=`<div class="ig-dm"><div class="ig-dm-top"><span class="a" style="background:${d.av}"></span><b>${d.from}</b>
-      <small>Instagram · 팔로워 ${fans[d.from]||"12"}명 · 게시물 ${d.from==="borrowed.life"?"0":"28"}개</small>
+    let h=`<div class="ig-dm"><div class="ig-dm-top"><span class="a" style="background:${d.av};display:flex;align-items:flex-end;justify-content:center;overflow:hidden">${d.egg?`<svg width="84" height="84" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="9.5" r="4"/><path d="M4 21c1.2-4 4.4-6 8-6s6.8 2 8 6z"/></svg>`:""}</span><b>${d.from}</b>
+      <small>Instagram · 팔로워 ${fans[d.from]||"12"}명 · 게시물 ${d.from==="borrowed.life"||d.egg?"0":"28"}개${d.egg?" · 3일 전 가입":""}</small>
       <small>회원님이 팔로우하지 않는 계정입니다</small><span class="btn">프로필 보기</span></div>
       <div class="ig-dm-time">${d.time}</div>`;
     d.msgs.forEach((t,i)=>{ const last=i===d.msgs.length-1;
@@ -2460,6 +2738,53 @@ function render(k, isBack){
       </div>
     </div>`;
   }
+  else if(k==="site:univ"){
+    title.textContent="한국대학교 화학공학과"; body.style.background="#fff";
+    const rows=[
+      [1,"[안전] 실험실 시약 관리 강화 및 출입 기록 점검 안내","학과사무실","2026.03.27",true],
+      [0,"2026 봄 뉴스레터 발간 — 연구실 탐방: 계면공정 연구실","홍보위원회","2026.03.25"],
+      [0,"[수상] 2025 학부 우수연구상 수상자 안내 (4학년 강지수 외 2명)","학과사무실","2026.03.20"],
+      [0,"2026-1학기 졸업논문 중간발표 일정 공지","학부교학팀","2026.03.16"],
+      [0,"[장학] 오성장학재단 2026 이공계 장학생 선발 결과","학과사무실","2026.03.09"],
+      [0,"대학원 입학설명회 개최 안내 (4/15)","대학원팀","2026.03.04"],
+      [0,"실험실 안전교육 이수 필수 안내","학과사무실","2026.03.02"],
+    ];
+    body.innerHTML=`<div class="web-bar">🔒 chem.hankuk.ac.kr</div>
+    <div class="rs un">
+      <div class="un-top"><span>한국대학교</span><span>KOR · ENG</span></div>
+      <div class="rs-gnb"><span class="rs-logo" style="color:#0b3d7a"><i class="os-em" style="color:#0b3d7a">▲</i>화학공학과<small style="color:#6b7f99;letter-spacing:1px">CHEMICAL ENG.</small></span><span class="rs-ham">☰</span></div>
+      <div class="un-hero"><small>NEWSLETTER · 2026 SPRING</small><b>계면을 연구하는 사람들</b><span>Vol.42 · 2026.03</span></div>
+      <div class="un-tabs"><span>학과소개</span><span>교수진</span><span class="on">공지사항</span><span>뉴스레터</span></div>
+      <div class="un-h">공지사항 <small>총 128건</small></div>
+      <table class="un-tb"><tr><th>번호</th><th>제목</th><th>날짜</th></tr>
+        ${rows.map((r,i)=>`<tr class="${r[4]?"go":""}" data-go="${r[4]?1:0}"><td>${r[0]?'<em>공지</em>':128-i}</td><td>${r[1]}${r[4]?' <i class="nw">N</i>':''}</td><td>${r[3].slice(5)}</td></tr>`).join("")}</table>
+      <div class="un-pg"><span>«</span><span class="on">1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>»</span></div>
+      <div class="rs-ft"><p>한국대학교 공과대학 화학공학과<br>서울특별시 관악구 00로 1 공학관 302호 · 02-000-0000</p><p class="cp">COPYRIGHT © HANKUK UNIV. ALL RIGHTS RESERVED.</p></div>
+    </div>`;
+    body.querySelectorAll(".un-tb tr.go").forEach(r=>{ r.style.cursor="pointer"; r.onclick=()=>render("site:univpost"); });
+  }
+  else if(k==="site:univpost"){
+    title.textContent="공지사항"; body.style.background="#fff";
+    body.innerHTML=`<div class="web-bar">🔒 chem.hankuk.ac.kr/notice/view?no=1</div>
+    <div class="rs un">
+      <div class="rs-gnb"><span class="rs-logo" style="color:#0b3d7a"><i class="os-em" style="color:#0b3d7a">▲</i>화학공학과</span><span class="rs-ham">☰</span></div>
+      <div class="un-view">
+        <div class="un-vt"><em>공지</em> [안전] 실험실 시약 관리 강화 및 출입 기록 점검 안내</div>
+        <div class="un-vm"><span>작성자 학과사무실</span><span>2026.03.27</span><span>조회 1,042</span></div>
+        <div class="un-vb">
+          <p>화학공학과 구성원 여러분께 안내드립니다.</p>
+          <p>최근 서울 강남권을 중심으로 유통되고 있는 신종 합성마약, 일명 <b>'블루(BLUE)'</b>와 관련하여 경찰청으로부터 대학 실험실 시약 관리에 대한 협조 요청이 접수되었습니다.</p>
+          <p>해당 물질은 <b>상온에서는 무색 액체</b>이나 <b>일정 온도 이하로 냉각되면 푸른색 결정</b>으로 변하는 특성이 있으며, 체내에서는 짧은 시간 내 분해되어 검출이 어려운 것으로 알려져 있습니다. 합성에는 일반 화학 실험실에서 사용하는 일부 시약이 필요한 것으로 파악되었습니다.</p>
+          <p>이에 따라 학과에서는 아래와 같이 조치하오니 협조 부탁드립니다.</p>
+          <ol><li>4월 1일부터 지정 시약(목록 첨부) 사용 시 사용대장 기재 의무화</li><li>야간(22시~06시) 실험실 출입 기록 전수 점검</li><li>2월 이후 시약 재고 불일치 건 자체 조사 진행 중</li></ol>
+          <p>관련하여 확인되는 사항이 있을 경우 학과사무실로 연락 바랍니다.</p>
+          <div class="un-att">📎 지정시약_관리목록_2026.pdf</div>
+        </div>
+        <div class="un-nav"><div><span>이전글</span>2026 봄 뉴스레터 발간 — 연구실 탐방</div><div><span>다음글</span>다음 글이 없습니다.</div></div>
+        <div class="un-list" onclick="goBack()">목록</div>
+      </div>
+    </div>`;
+  }
   else if(k==="site:wed"){
     title.textContent="웨딩홀 예약"; body.style.background="#fff";
     body.innerHTML=`<div class="web-bar">🔒 wedding.grandohsung.co.kr</div>
@@ -2490,7 +2815,7 @@ function render(k, isBack){
       bg.innerHTML=`<div class="vl-pop"><div class="vl-pop-hd" style="background:#7a5a32">알림</div><div class="vl-pop-bd"><p>예약 취소는 <b>신랑·신부 양측 본인 확인</b> 후 담당 플래너를 통해서만 가능합니다.</p><p>취소 시 위약금 규정이 적용됩니다.</p></div><div class="vl-pop-ft"><span></span><span class="x">확인</span></div></div>`;
       bg.querySelector(".x").onclick=()=>bg.remove(); body.appendChild(bg); };
   }
-  else if(k==="villa"){
+  else if(k==="villa"){ clue("villa");
     title.textContent="청평 별장 관리";
     body.innerHTML=`<div class="web-bar">🔒 cheongpyeong-villa.kr</div>
       <div class="vl-hero"><div class="vl-tt">LAKESIDE VILLA<br><span>청평호 프라이빗 별장</span></div></div>
@@ -2571,6 +2896,11 @@ function bubble(m, typing){
   el.className=`msg ${m.from} pop`+(typing?" typing":"");
   const who = m.who && m.from==="you" ? `<div style="font-size:11px;color:#374151;margin-bottom:2px">${m.who}</div>` : "";
   if(m.day){ const d=document.createElement("div"); d.className="day"; d.textContent=m.day; return d; }
+  if(m.link){
+    if(m.link.go){ el.style.cursor="pointer"; el.onclick=()=>render(m.link.go); }
+    el.innerHTML=`<div class="lk${m.link.go?" go":""}"><div class="lk-im"></div><div class="lk-t"><small>${m.link.src}</small><b>${m.link.t}</b><span>${m.link.d}</span></div></div><span class="tm">${m.tm||""}</span>`;
+    return el;
+  }
   if(m.img){
     el.innerHTML=`<div>${who}<img src="${POLICE_IMG}" style="width:200px;border-radius:12px;display:block"></div><span class="tm">${m.tm||""}</span>`;
     return el;
