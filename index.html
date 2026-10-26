@@ -1906,7 +1906,7 @@ function ringPhrase(){
     o.start(t); o2.start(t); o.stop(t+0.45); o2.stop(t+0.45);
   });
 }
-function startRing(){ const c=getCtx(); if(c && c.state==="suspended") c.resume(); const vib=()=>{ if(navigator.vibrate) navigator.vibrate([700,300,700]); }; ding(); vib(); ringLoop=setInterval(vib,2000);
+function startRing(){ const c=getCtx(); if(c && c.state==="suspended") c.resume(); const vib=()=>{ if(navigator.vibrate) navigator.vibrate([700,300,700]); }; ringPhrase(); vib(); ringLoop=setInterval(()=>{ ringPhrase(); vib(); },2000);
   ringMiss=setTimeout(()=>{ if(callState==="ringing") finishCall({s:"부재중 · 휴대전화", miss:true}); },25000); }
 function stopRing(){ if(navigator.vibrate) navigator.vibrate(0); clearInterval(ringLoop); clearTimeout(ringMiss); ringLoop=null; }
 
